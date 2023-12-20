@@ -5,10 +5,12 @@ class Client():
 		self.api='https://api.newmanga.org/v2'
 		self.api_v3='https://api.newmanga.org/v3'
 		self.user_id=None
+	def get_account_info(self):
+	    return requests.get(f'{self.api}/user',headers=self.headers).json()
 	def login(self,email,password):
 	    data={"credentials":email,"password":password}
 	    req=requests.post(f'{self.api}/login',json=data,headers=self.headers)
-	    self.headers=reg.headers
+	    self.headers['Cookie']=req.headers['set-cookie']
 	    self.user_id=self.get_account_info()['id']
 	    return req
 	def friendship_request(self,user_id):
@@ -19,8 +21,6 @@ class Client():
 	def forgot_password(self,credentials):
 	    data={"credentials":credentials}
 	    return requests.post(f'{self.api}/forgot_password',json=data,headers=self.headers)
-	def get_account_info(self):
-	    return requests.get(f'{self.api}/user',headers=self.headers).json()
 	def slides(self):
 	    return requests.get(f'{self.api}/slides',headers=self.headers).json()
 	def projects_trending(self):
