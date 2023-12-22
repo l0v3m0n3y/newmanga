@@ -6,7 +6,7 @@ Web-API for newmanga.org
 
 # Install
 ```
-git clone https://github.com/aminobotskek/newmanga.py
+git clone https://github.com/aminobotskek/newmanga
 ```
 
 
